@@ -1,0 +1,28 @@
+@startuml
+actor IMain
+participant DatabaseLogFactory
+participant DatabaseLog
+participant FileLogFactory
+participant FileLog
+note left of IMain
+日志记录器
+某系统日志记录器要求支持多种日志记录方式，如文件记录、数据库记录等，且用户可以根据要求动态选择日志记录方式， 现使用工厂方法模式设计该系统。
+end note
+
+autonumber 1.0
+IMain->DatabaseLogFactory:createLog():log *
+activate DatabaseLogFactory
+    DatabaseLogFactory->DatabaseLog:create
+deactivate DatabaseLogFactory
+    IMain->DatabaseLog:writeLog()
+activate DatabaseLog
+deactivate DatabaseLog
+autonumber 2.0
+IMain->FileLogFactory:createLog():log *
+activate FileLogFactory
+FileLogFactory->FileLog:create
+deactivate FileLogFactory
+IMain->FileLog:writeLog()
+activate FileLog
+deactivate FileLog
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+abstract class LogFactory{
++ (public) createLog():Log
++ LogFactory()
++ ~LogFactory()
+}
+class FileLogFactory{
++ (public) createLog():Log
++ LogFactory()
++ ~LogFactory()
+}
+class DatabaseLogFactory{
++ (public) createLog():Log
++ LogFactory()
++ ~LogFactory()
+}
+
+
+
+abstract class Log{
++ Log()
++ ~Log()
++ writeLog():void
+}
+
+class FileLog{
++ Log()
++ ~Log()
++ writeLog():void
+}
+class DatabaseLog{
++ Log()
++ ~Log()
++ writeLog():void
+}
+
+FileLogFactory .up.|>LogFactory
+DatabaseLogFactory .up.|>LogFactory
+FileLog .up.|> Log
+DatabaseLog .up.|> Log
+
+FileLogFactory .right.>FileLog:《create》
+DatabaseLogFactory .right.>DatabaseLog:《create》
+@enduml
