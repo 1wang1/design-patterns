@@ -1,0 +1,30 @@
+@startuml
+
+abstract class Product{
+    use():void
+}
+class ConcreteProductA{
+    use():void
+}
+class ConcreteProductB{
+    use():void
+}
+class Factory
+
+ConcreteProductA .up.|> Product
+ConcreteProductB .up.|> Product
+
+
+Factory .up.> ConcreteProductB
+Factory .up.> ConcreteProductA
+note as factory
+if (arg == "A") {
+    return new ConcreteProductA();
+} else if (arg == "B") {
+    return new ConcreteProductB();
+}
+end note
+Factory .up. factory
+
+
+@enduml
