@@ -1,0 +1,45 @@
+@startuml
+abstract class AbstractFactory{
++ createProductA():ProductA
++ createProductB():ProductA
+}
+class ConcreteFactory1{
++ createProductA():ProductA
++ createProductB():ProductA
+}
+class ConcreteFactory2{
++ createProductA():ProductA
++ createProductB():ProductA
+}
+ConcreteFactory1 ..|>AbstractFactory
+ConcreteFactory2 ..|>AbstractFactory
+
+abstract class AbstractProductA{
++ use():void
+}
+class ConcreteProductA1{
++ use():void
+}
+class ConcreteProductA2{
++ use():void
+}
+ConcreteProductA1 ..|>AbstractProductA
+ConcreteProductA2 ..|>AbstractProductA
+
+abstract class AbstractProductB{
++ use():void
+}
+class ConcreteProductB1{
++ use():void
+}
+class ConcreteProductB2{
++ use():void
+}
+ConcreteProductB1 ..|>AbstractProductB
+ConcreteProductB2 ..|>AbstractProductB
+
+ConcreteFactory1 ..>ConcreteProductA1
+ConcreteFactory1 ..>ConcreteProductB1
+ConcreteFactory2 ..>ConcreteProductA2
+ConcreteFactory2 ..>ConcreteProductB2
+@enduml

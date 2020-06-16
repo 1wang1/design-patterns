@@ -1,0 +1,48 @@
+@startuml
+participant Client
+participant ConcreteFactory1
+participant ConcretePruductA1
+participant ConcretePruductB1
+participant ConcreteFactory2
+participant ConcretePruductA2
+participant ConcretePruductB2
+autonumber 1.0
+Client->ConcreteFactory1:createProductA()
+activate Client
+activate ConcreteFactory1
+ConcreteFactory1->ConcretePruductA1:create
+deactivate ConcreteFactory1
+
+Client->ConcreteFactory1:createProductB()
+activate ConcreteFactory1
+ConcreteFactory1->ConcretePruductB1:create
+deactivate ConcreteFactory1
+
+Client->ConcretePruductA1:use()
+activate ConcretePruductA1
+deactivate ConcretePruductA1
+Client->ConcretePruductB1:use()
+activate ConcretePruductB1
+deactivate ConcretePruductB1
+deactivate Client
+
+autonumber 2.0
+Client->ConcreteFactory2:createProductA()
+activate Client
+activate ConcreteFactory2
+ConcreteFactory2->ConcretePruductA2:create
+deactivate ConcreteFactory2
+
+Client->ConcreteFactory2:createProductB()
+activate ConcreteFactory2
+ConcreteFactory2->ConcretePruductB2:create
+deactivate ConcreteFactory2
+
+Client->ConcretePruductA2:use()
+activate ConcretePruductA2
+deactivate ConcretePruductA2
+Client->ConcretePruductB2:use()
+activate ConcretePruductB2
+deactivate ConcretePruductB2
+deactivate Client
+@enduml
