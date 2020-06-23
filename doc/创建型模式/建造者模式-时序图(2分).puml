@@ -1,0 +1,16 @@
+@startuml
+participant iMain
+participant Director
+participant ConcreteBuilder
+
+activate iMain
+iMain->ConcreteBuilder:create
+iMain->Director:setBuilder(Builder*)
+iMain->Director:constuct():Product*
+Director->ConcreteBuilder:buildProductA()
+Director->ConcreteBuilder:buildProductB()
+Director->ConcreteBuilder:buildProductC()
+Director->ConcreteBuilder:getResult()
+deactivate iMain
+
+@enduml

@@ -1,3 +1,31 @@
 @startuml
-testdoc
+note as n1
+建造者模式包含如下角色：
+      Builder：抽象建造者
+      ConcreteBuilder：具体建造者
+      Director：指挥者
+      Product：产品角色
+end note
+abstract class Builder{
++ build productA():void
++ build productB():void
++ build productC():void
+}
+class ConcreteBuilder{
++ build productA():void
++ build productB():void
++ build productC():void
+}
+ConcreteBuilder--|>Builder
+class Product{
+}
+ConcreteBuilder-->Product
+
+class Director{
+- builder:Builder
++ constuct():Product
++ setBuilder(Builder):void
+}
+
+Builder--o Director
 @enduml
