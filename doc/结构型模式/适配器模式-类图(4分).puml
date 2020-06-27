@@ -1,11 +1,49 @@
 @startuml
-class Singleton{
-- instance:Singleton
-+ getInstance():Singleton
-+ singletonOperation():void
 
--<constructor> Singleton():void
+package "class Adapter" as O{
+    class Client{
+    }
+    class Target{
+    + request():void
+    }
+    class Adapter{
+    - adaptee:Adaptee*
+    + request():void
+    }
+    class Adaptee{
+    + specificRequest():void
+    }
+    Client .right.> Target :依赖关系，使用Target中的方法
+    Adapter -up-|> Target
+    Adapter -right-> Adaptee:关联关系，Adaptee作为Adapter的内部成员变量
+    note left of Adapter:adaptee->Adaptee
 }
+note as ObjectAdapter
+对象适配器
+end note
+ObjectAdapter--O
 
-Singleton <--o Singleton:instance
+
+note as ClassAdapter
+类适配器
+end note
+ClassAdapter--C
+package "class Adapter_classModel" as C{
+       class Client1{
+       }
+       class Target1{
+       + request():void
+       }
+       class Adapter1{
+       + request():void
+       }
+       class Adaptee1{
+       + specificRequest():void
+       }
+    Client1 .right.> Target1
+    Adapter1 -up-|> Target1
+    Adapter1 -up-|> Adaptee1
+
+    note left of Adapter1:specificRequest()
+}
 @enduml
