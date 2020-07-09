@@ -7,7 +7,12 @@ note as n1
 - Implementor：实现类接口
 - ConcreteImplementor：具体实现类
 end note
-class Abstraction{
+note as n2
+如果需要开发一个跨平台视频播放器，
+可以在不同操作系统平台（如Windows、Linux、Unix等）上播放多种格式的视频文件，
+常见的视频格式包括MPEG、RMVB、AVI、WMV等。现使用桥接模式设计该播放器。
+end note
+abstract Abstraction{
 - pImp:Implementor*
 + operation():void
 + Abstraction(Implementor*):void
@@ -34,7 +39,7 @@ class ConcreteImplementorB{
 }
 ConcreteImplementorB ..|> Implementor
 
-class RefinedAbstraction{
+abstract RefinedAbstraction{
 + operation():void
 + Abstraction(Implementor*):void
 }
