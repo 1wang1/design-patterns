@@ -1,0 +1,57 @@
+@startuml
+note as description
+组合模式的实现根据所实现的接口区别分为两种形式：安全式和透明式
+end note
+
+package security{
+interface Component{
++ printDescription():void;输出组件名称
+}
+
+class TreeBranch{
+- List<Component> childComponent
+- String name
++ <Construction> TreeBranch(String name):void
++ addChild(Component child):void;添加子组件
++ removeChild(ind childIndex):void;删除子组件
++ getChild():List<Component>;获取所有子组件
++ printDescription():void;输出组件的自身结构
+}
+
+class Leaf{
+- List<Component> childComponent
+- String name
++ <Construction> Leaf(String name):void
++ printDescription():void;输出组件的自身结构--即叶子对象的名称
+}
+
+TreeBranch --|> Component
+Leaf --|> Component
+}
+
+package Transparent{
+abstract Component1{
++ printDescription():void;输出组件名称
+}
+
+class TreeBranch1{
+- List<Component> childComponent
+- String name
++ <Construction> TreeBranch(String name):void
++ addChild(Component child):void;添加子组件
++ removeChild(ind childIndex):void;删除子组件
++ getChild():List<Component>;获取所有子组件
++ printDescription():void;输出组件的自身结构
+}
+
+class Leaf1{
+- List<Component> childComponent
+- String name
++ <Construction> Leaf(String name):void
++ printDescription():void;输出组件的自身结构--即叶子对象的名称
+}
+
+TreeBranch1 --|> Component1
+Leaf1 --|> Component1
+}
+@enduml

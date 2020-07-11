@@ -1,0 +1,47 @@
+@startuml
+package shape{
+class Shape{
+    + clone():Object
+}
+class Circle{
+    + clone():Object
+}
+class Rectangle{
+    + clone():Object
+}
+class Square{
+    + clone():Object
+}
+Circle --|> Shape
+Rectangle --|> Shape
+Square --|> Shape
+}
+
+class Client{
++ main():void
+}
+class ShapeCache{
+-shapeMap:HashMap
++getShape(String shape):Shape
++loadCache():void
+}
+Client..>ShapeCache
+ShapeCache ..> shape:clone
+
+note as NloadCache
+loadCache:
+    shapeMap.put('Circle',new Circle())
+    shapeMap.put('Rectangle',new Rectangle())
+    shapeMap.put('Square',new Square())
+end note
+NloadCache--ShapeCache
+
+note as NgetShape
+getShape(String shape):
+    shapeMap.get('Circle').clone
+    shapeMap.get('Rectangle').clone
+    shapeMap.get('Square').clone
+end note
+NgetShape--ShapeCache
+
+@enduml
