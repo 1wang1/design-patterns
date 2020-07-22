@@ -1,10 +1,11 @@
+
 design-patterns
 主要参考：
 
 [图说设计模式]: https://design-patterns.readthedocs.io/zh_CN/latest/	"图说设计模式"
 
 
-[toc]
+@[toc]
 # 面向对象设计模式的六大原则
 
 1. 开闭原则（Open Close Principle）
@@ -76,12 +77,20 @@ design-patterns
   重要程度：4
 
 ## 1. 简单工厂模式4
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714222838999.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 ### 简单工厂模式的主要优缺点
 1. 简单工厂模式最大的优点在于实现对象的创建和对象的使用分离，将对象的创建交给专门的工厂类负责，
 2. 但是其最大的缺点在于工厂类不够灵活，增加新的具体产品需要修改工厂类的判断逻辑代码（违反开闭原则），而且产品较多时，工厂方法代码将会非常复杂。
 ### 简单工厂模式的应用场景
 1. 简单工厂模式适用情况包括：工厂类负责创建的对象比较少；客户端只知道传入工厂类的参数，对于如何创建对象不关心。
 ## 2. 工厂方法模式5
+工厂方法（FactoryMethod）模式的定义：定义一个创建产品对象的工厂接口，将产品对象的实际创建工作推迟到具体子工厂类当中。这满足创建型模式中所要求的“创建与使用相分离”的特点。
+
+工厂模式-日志记录实例 类图
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224048504.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224112979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
+
+
 ### 工厂模式的主要优缺点：
 1. 工厂方法模式的主要优点是增加新的产品类时无须修改现有系统，并封装了产品对象的创建细节，系统具有良好的灵活性和可扩展性；
 2. 其缺点在于增加新产品的同时需要增加新的工厂，导致系统类的个数成对增加，在一定程度上增加了系统的复杂性。
@@ -90,6 +99,10 @@ design-patterns
 1. 工厂方法模式适用情况包括：一个类不知道它所需要的对象的类；一个类通过其子类来指定创建哪个对象；将创建对象的任务委托给多个工厂子类中的某一个，客户端在使用时可以无须关心是哪一个工厂子类创建产品子类，需要时再动态指定。
 
 ## 3. 抽象工厂模式5
+
+抽象工厂（AbstractFactory）模式的定义：是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224129489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224139856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 ### 抽象工厂模式的主要优缺点：
 1. 抽象工厂模式的主要优点是隔离了具体类的生成，使得客户并不需要知道什么被创建，而且每次可以通过具体工厂类创建一个产品族中的多个对象，增加或者替换产品族比较方便，增加新的具体工厂和产品族很方便；
 2. 主要缺点在于增加新的产品等级结构很复杂，需要修改抽象工厂和所有的具体工厂类，对“开闭原则”的支持呈现倾斜性。
@@ -98,6 +111,9 @@ design-patterns
 1. 抽象工厂模式适用情况包括：一个系统不应当依赖于产品类实例如何被创建、组合和表达的细节；系统中有多于一个的产品族，而每次只使用其中某一产品族；属于同一个产品族的产品将在一起使用；系统提供一个产品类的库，所有的产品以同样的接口出现，从而使客户端不依赖于具体实现。
 
 ## 4. 原型模式3
+
+原型（Prototype）模式的定义如下：用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型相同或相似的新对象。在这里，原型实例指定了要创建的对象的种类。用这种方式创建对象非常高效，根本无须知道对象创建的细节。例如，Windows 操作系统的安装通常较耗时，如果复制就快了很多。在生活中复制的例子非常多，这里不一一列举了。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224214179.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 
 > 参考：https://www.cnblogs.com/haizai/p/12404326.html
 
@@ -129,6 +145,9 @@ sheep = (Sheep)supper.clone();
 注：原型模式的拷贝是从内存（堆内存）中以二进制流的方式进行拷贝，重新分配一个内存块，并不会执行任何构造函数。
 
 ## 5. 单例模式4
+
+单例（Singleton）模式的定义：指一个类只有一个实例，且该类能自行创建这个实例的一种模式。例如，Windows 中只能打开一个任务管理器，这样可以避免因打开多个任务管理器窗口而造成内存资源的浪费，或出现各个窗口显示内容的不一致等错误。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020071422423359.png)
 
 ### 单例模式的主要优缺点：
 
@@ -185,6 +204,9 @@ sheep = (Sheep)supper.clone();
 
 ## 1. 适配器模式4
 
+适配器模式（Adapter）的定义如下：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224452286.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 ### 适配器模式的主要优缺点
 
 1. 适配器模式的主要优点是将目标类和适配者类解耦，增加了类的透明性和复用性，同时系统的灵活性和扩展性都非常好，更换适配器或者增加新的适配器都非常方便，符合“开闭原则”；
@@ -200,6 +222,9 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 ## 2. 桥接模式3
 
+桥接（Bridge）模式的定义如下：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224651170.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 ### 桥接模式的主要优缺点
 
 1. 桥接模式的主要优点是分离抽象接口及其实现部分，是比多继承方案更好的解决方法，桥接模式还提高了系统的可扩充性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统，实现细节对**客户**透明，可以对**用户**隐藏实现细节；
@@ -215,7 +240,11 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 ## 3. 组合模式4
 
+组合（Composite）模式的定义：有时又叫作部分-整体模式，它是一种将对象组合成树状的层次结构的模式，用来表示“部分-整体”的关系，使用户对单个对象和组合对象具有一致的访问性。
+
 组合模式的实现根据所实现的接口的区别分为两种形式，分别称为**安全式**和**透明式**。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224718428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
 
 ### 组合模式的主要优点有：
 
@@ -237,9 +266,33 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 因此在使用组合模式的时候，建议多采用透明式的实现方式。
 
-## 4. 装饰模式3TODO
+## 4. 装饰模式3
 
-## 5. 外观模式5
+装饰（Decorator）模式的定义：指在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）的模式，它属于对象结构型模式。
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200720203436597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
+
+### 装饰模式的主要优缺点
+
+装饰（Decorator）模式的主要优点有：
+
+- 采用装饰模式扩展对象的功能比采用继承方式更加灵活。
+- 可以设计出多个不同的具体装饰类，创造出多个不同行为的组合。
+
+其主要缺点是：装饰模式增加了许多子类，如果过度使用会使程序变得很复杂。
+
+### 装饰模式的主要应用场景
+
+- 当需要给一个现有类添加附加职责，而又不能采用生成子类的方法进行扩充时。例如，该类被隐藏或者该类是终极类或者采用继承方式会产生大量的子类。
+- 当需要通过对现有的一组基本功能进行排列组合而产生非常多的功能时，采用继承关系很难实现，而采用装饰模式却很好实现。
+- 当对象的功能要求可以动态地添加，也可以再动态地撤销时。
+
+### 装饰模式的实例
+
+
+装饰模式在 [Java](http://c.biancheng.net/java/) 语言中的最著名的应用莫过于 Java I/O 标准库的设计了。例如，InputStream 的子类 FilterInputStream，OutputStream 的子类 FilterOutputStream，Reader 的子类 BufferedReader 以及 FilterReader，还有 Writer 的子类 BufferedWriter、FilterWriter 以及 PrintWriter 等，它们都是抽象装饰类。
+
+## 5. 外观模式5TODO
 
 ## 6. 享元模式1
 

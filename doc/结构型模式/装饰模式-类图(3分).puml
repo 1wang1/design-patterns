@@ -1,11 +1,67 @@
 @startuml
-class Singleton{
-- instance:Singleton
-+ getInstance():Singleton
-+ singletonOperation():void
-
--<constructor> Singleton():void
+abstract Component{
+//  抽象构建
++ operation()
 }
 
-Singleton <--o Singleton:instance
+class ConcreteComponent{
+// 具体构件
++ operation()
+}
+
+abstract Decorator{
+// 抽象装饰
+- component:Component
++ Decorator():Component
++ operation()
+}
+note as NDecorator
+public operation(){
+component.operation();
+}
+end note
+
+ ConcreteComponent .up.|> Component
+ Decorator .up.|> Component
+ Component  --o Decorator
+
+ NDecorator .. Decorator
+
+ class  ConcreteDecorator1{
+ // 具体装饰1
+ + operation()
+ + addedFunction()
+ }
+
+ class  ConcreteDecorator2{
+ // 具体装饰2
+ + operation()
+ + addedFunction()
+ }
+ note as NConcreteDecorator
+ public void operation(){
+    super.operation();
+    addedFunction();
+ }
+ end note
+
+ NConcreteDecorator .right. ConcreteDecorator1
+
+ ConcreteDecorator1 -up.|> Decorator
+ ConcreteDecorator2 -up.|> Decorator
+
+note as description
+使用示例：
+public class DecoratorPattern
+{
+    public static void main(String[] args)
+    {
+        Component p=new ConcreteComponent();
+        p.operation();
+        System.out.println("---------------------------------");
+        Component d=new ConcreteDecorator(p);
+        d.operation();
+    }
+}
+end note
 @enduml
