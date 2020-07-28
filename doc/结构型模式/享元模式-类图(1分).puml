@@ -1,0 +1,45 @@
+@startuml
+note as description
+享元模式包含如下角色：
+
+Flyweight: 抽象享元类
+ConcreteFlyweight: 具体享元类
+UnsharedConcreteFlyweight: 非共享具体享元类
+FlyweightFactory: 享元工厂类
+end note
+class FlyweightFactory{
+// 享元工厂类
+- mpFlyweight:map<string,Flyweight*>
++ getFlyweight(String):Flyweight
+}
+
+note as factoryDes
+getFlyweight:
+if(mpFlyweight.containKey(key)){
+ return mpFlyweight.get(key)
+}else{
+ p = new Flyweight();
+ mpFlyweight.put(key,p)
+ return p
+}
+end note
+
+factoryDes .right. FlyweightFactory
+class ConcreteFlyweight{
+// 具体享元类
+- intrinsicState：int
++ poeration():void
+}
+
+class UnsharedConcreteFlyweight{
+// 非共享具体享元类
+- allState:int
++ poeration():void
+}
+
+Flyweight -right-o FlyweightFactory
+
+
+ConcreteFlyweight .up.|> Flyweight
+UnsharedConcreteFlyweight .up.|> Flyweight
+@enduml

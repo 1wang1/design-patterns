@@ -244,7 +244,7 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 组合模式的实现根据所实现的接口的区别分为两种形式，分别称为**安全式**和**透明式**。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200714224718428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70)
+<img src="https://img-blog.csdnimg.cn/20200714224718428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:200%;" />
 
 ### 组合模式的主要优点有：
 
@@ -292,7 +292,7 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 装饰模式在 [Java](http://c.biancheng.net/java/) 语言中的最著名的应用莫过于 Java I/O 标准库的设计了。例如，InputStream 的子类 FilterInputStream，OutputStream 的子类 FilterOutputStream，Reader 的子类 BufferedReader 以及 FilterReader，还有 Writer 的子类 BufferedWriter、FilterWriter 以及 PrintWriter 等，它们都是抽象装饰类。
 
-## 5. 外观模式5TODO
+## 5. 外观模式5
 
 ### 外观模式的主要优缺点
 
@@ -308,7 +308,23 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 ## 6. 享元模式1
 
-## 7. 代理模式4
+享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。
+
+### 享元模式的主要优缺点
+
+享元模式主要优点在于它可以极大减少内存中对象的数量，使得相同对象或相似对象在内存中只保存一份；
+
+其缺点是使得系统更加复杂，并且需要将享元对象的状态外部化，而读取外部状态使得运行时间变长。
+
+### 享元模式的主要应用场景
+
+一个系统有大量相同或者相似的对象，由于这类对象的大量使用，造成内存的大量耗费；对象的大部分状态都可以外部化，可以将这些外部状态传入对象中；多次重复使用享元对象。
+
+### 享元模式的实例：
+
+享元模式在编辑器软件中大量使用，如在一个文档中多次出现相同的图片，则只需要创建一个图片对象，通过在应用程序中设置该图片出现的位置，可以实现该图片在不同地方多次重复显示。
+
+## 7. 代理模式4TODO
 
 # 行为型模式
 
@@ -387,9 +403,7 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 ## 9. 策略模式4
 
-## 10. 模板方法模式3
-
-## 11. 访问者模式1
+## 10. 模板方法模式311. 访问者模式1
 
 
 

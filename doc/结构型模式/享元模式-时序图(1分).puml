@@ -1,0 +1,23 @@
+@startuml
+actor user
+participant FlyweightFactory
+participant ConcreteFlyweight
+autonumber 1.0
+activate user
+user->FlyweightFactory:create
+activate FlyweightFactory
+user->FlyweightFactory:getFlyweight("one“)
+ConcreteFlyweight<-FlyweightFactory:create
+user<--FlyweightFactory:Flyweight
+deactivate FlyweightFactory
+user->ConcreteFlyweight:operation()
+deactivate user
+autonumber 2.0
+user->FlyweightFactory:getFlyweight("one“)
+activate user
+activate FlyweightFactory
+user<--FlyweightFactory:Flyweight
+deactivate FlyweightFactory
+user->ConcreteFlyweight:operation()
+deactivate user
+@enduml
