@@ -1,0 +1,31 @@
+@startuml
+
+class Client{
+}
+class Facade{
+// 外观角色
++ wrapOpration():void
+}
+
+class SystemA{
+// 子系统角色
++ oprationA():void
+}
+class SystemB{
+// 子系统角色
++ oprationB():void
+}
+
+class SystemC{
+// 子系统角色
++ oprationC():void
+}
+
+Client ..> Facade
+Facade --> SystemA
+Facade --> SystemB
+Facade --> SystemC
+
+
+
+@enduml
