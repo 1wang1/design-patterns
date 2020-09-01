@@ -1,19 +1,37 @@
 @startuml
-
+note as 责任链
+职责链模式主要包含以下角色。
+1.抽象处理者（Handler）角色：定义一个处理请求的接口，包含抽象处理方法和一个后继连接。
+2.具体处理者（Concrete Handler）角色：实现抽象处理者的处理方法，判断能否处理本次请求，如果可以处理请求则处理，否则将该请求转给它的后继者。
+3.客户类（Client）角色：创建处理链，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。
+end note
 class Client{
+// 客户端类
++ main(Stringp[] args):void
 }
-class Facade{
-// 外观角色
-+ wrapOpration():void
+note as client
+Handler handler1 = new ConcreteHandler1();
+Handler handler2 = new ConcreteHandler2();
+handler1.setNext(handler2);
+handler1.handleRequest("two");
+end note
+client .up. Client
+
+abstract Handler{
+// 抽象处理者
+- next:Handler
++ getNext():Handler
++ setNext(Handler next):void
++ handleRequest(String request):void
 }
 
-class SystemA{
-// 子系统角色
-+ oprationA():void
+class ConcreteHandler1{
+// 具体处理者1
++ handleRequest(String request):void
 }
-class SystemB{
-// 子系统角色
-+ oprationB():void
+class ConcreteHandler2{
+// 具体处理者2
++ handleRequest(String request):void
 }
 
 class SystemC{
@@ -21,10 +39,10 @@ class SystemC{
 + oprationC():void
 }
 
-Client ..> Facade
-Facade --> SystemA
-Facade --> SystemB
-Facade --> SystemC
+Client .right.> Handler
+ConcreteHandler1 -up-|> Handler
+ConcreteHandler2 -up-|> Handler
+Handler ..o Handler
 
 
 
