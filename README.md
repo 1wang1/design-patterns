@@ -1,4 +1,6 @@
 
+
+
 design-patterns
 主要参考：
 
@@ -310,6 +312,19 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。
 
++ 类图
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200819222524684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+
++ 时序图
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200819222534969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+
+
+
+
+
+
 ### 享元模式的主要优缺点
 
 享元模式主要优点在于它可以极大减少内存中对象的数量，使得相同对象或相似对象在内存中只保存一份；
@@ -324,9 +339,55 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 享元模式在编辑器软件中大量使用，如在一个文档中多次出现相同的图片，则只需要创建一个图片对象，通过在应用程序中设置该图片出现的位置，可以实现该图片在不同地方多次重复显示。
 
-## 7. 代理模式4TODO
+## 7. 代理模式4
 
-# 行为型模式
+代理模式(Proxy Pattern) ：给某一个对象提供一个代 理，并由代理对象控制对原对象的引用。代理模式的英 文叫做Proxy或Surrogate，它是一种对象结构型模式。
+
+代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。
+
+- 代理模式类图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200822161445710.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+- 代理模式时序图
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200822161508383.png#pic_center)
+
+### 代理模式的主要优缺点
+
+代理模式的主要优点有：
+
+- 代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；能够协调调用者和被调用者，在一定程度上降低了系 统的耦合度。
+- 代理对象可以扩展目标对象的功能，也可以控制对真实对象的使用权限；
+- 远程代理使得客户端可以访问在远程机器上的对象，远程机器 可能具有更好的计算性能与处理速度，可以快速响应并处理客户端请求。；
+- 虚拟代理通过使用一个小对象来代表一个大对象，可以减少系 统资源的消耗，对系统进行优化并提高运行速度。
+
+其主要缺点是：
+
+  - 在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；
+  - 增加了系统的复杂度；
+
+### 代理模式的主要应用场景
+
+- 智能引用(Smart Reference)代理：当一个对象被引用时，提供一些额外的操作，如将此对象被调用的次数记录下来等。
+
+- 保护(Protect or Access)代理：控制对一个对象的访问，可以给不同的用户提供不同级别的使用权限。
+
+- Copy-on-Write代理：它是虚拟代理的一种，把复制（克隆）操作延迟 到只有在客户端真正需要时才执行。一般来说，对象的深克隆是一个 开销较大的操作，Copy-on-Write代理可以让这个操作延迟，只有对象被用到的时候才被克隆。
+
+- 虚拟(Virtual)代理：如果需要创建一个资源消耗较大的对象，先创建一个消耗相对较小的对象来表示，真实对象只在需要时才会被真正创建。
+
+- 远程(Remote)代理：为一个位于不同的地址空间的对象提供一个本地 的代理对象，这个不同的地址空间可以是在同一台主机中，也可是在 另一台主机中，远程代理又叫做大使(Ambassador)。
+
+### 代理模式的实例
+
+  动态代理
+
+  - 动态代理是一种较为高级的代理模式，它的典型应用就是Spring AOP。
+  - 在传统的代理模式中，客户端通过Proxy调用RealSubject类的request()方法，同时还在代理类中封装了其他方法(如preRequest()和postRequest())，可以处理一些其他问题。
+  - 如果按照这种方法使用代理模式，那么真实主题角色必须是事先已经存在的，并将其作为代理对象的内部成员属性。如果一个真实主题角色必须对应一个代理主题角色，这将导致系统中的类个数急剧增加，因此需要想办法减少系统中类的个数，此外，如何在事先不知道真实主题角色的情况下使用代理主题角色，这都是动态代理需要解决的问题。
+  - ![动态代理模式的结构图](https://imgconvert.csdnimg.cn/aHR0cDovL2MuYmlhbmNoZW5nLm5ldC91cGxvYWRzL2FsbGltZy8xODExMTUvMy0xUTExNTA5MzI1NTIyNy5naWY)
+
+
+
+# 行为型模式TODO
 
 行为型模式(Behavioral Pattern)是对在不同的对象之间划分责任和算法的抽象化。
 
