@@ -1,11 +1,32 @@
 @startuml
-class Singleton{
-- instance:Singleton
-+ getInstance():Singleton
-+ singletonOperation():void
+note as proxy
+代理模式包含如下角色：
+    Subject: 抽象主题角色:通过接口或抽象类声明真实主题和代理对象实现的业务方法。
+    Proxy: 代理主题角色:实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。
+    RealSubject: 真实主题角色:提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。
+end note
 
--<constructor> Singleton():void
+interface Subject{
+抽象主题
++ request():void
 }
+class RealSubject{
+真实主题
++ request():void
+}
+class Proxy{
+代理
++ preRequest():void
++ afterRequest():void
++ request():void
+}
+note as ProxyRequest
+preRequest()
+realSubject->request()
+afterRequest()
+end note
 
-Singleton <--o Singleton:instance
+Client .up.> Proxy
+Proxy .up.> Subject
+RealSubject .up.> Subject
 @enduml

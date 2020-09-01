@@ -1,0 +1,18 @@
+@startuml
+participant Client
+participant Proxy
+participant RealSubject
+autonumber
+Client->Proxy:create
+activate Proxy
+Proxy->RealSubject:create
+deactivate Proxy
+
+Client->Proxy:request()
+activate Proxy
+Proxy->Proxy:preRequest()
+Proxy->RealSubject:request()
+Proxy->Proxy:afterRequest()
+deactivate Proxy
+
+@enduml
