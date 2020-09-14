@@ -1,0 +1,91 @@
+@startuml
+note as invoker
+这里举一个例子：
+客户去餐馆可选择的早餐有肠粉、河粉和馄饨等，
+客户可向服务员选择以上早餐中的若干种，
+服务员将客户的请求交给相关的厨师去做。
+这里的点早餐相当于“命令”，
+务员相当于“调用者”，
+厨师相当于“接收者”
+end note
+
+note as CookingCommand
+//命名模式应用，依次执行
+    + setChangFen(food1);//设置肠粉菜单
+    + setHunTun(food2);  //设置河粉菜单
+    + setHeFen(food3);   //设置馄饨菜单
+    + chooseChangFen();  //选择肠粉
+    + chooseHeFen();     //选择河粉
+    + chooseHunTun();    //选择馄饨
+}
+end note
+
+class Waiter{
+//调用者：服务员
+    - changFen:Breakfast
+    - hunTun:Breakfast
+    - heFen:Breakfast
+    + setChangFen(Breakfast f)
+    + setHunTun(Breakfast f)
+    + setHeFen(Breakfast f)
+    + chooseChangFen()
+    + chooseHunTun()
+    + chooseHeFen()
+}
+interface Breakfast
+{
+//抽象命令：早餐
+    + cooking();
+}
+class ChangFen implements Breakfast
+{
+//具体命令：肠粉
+    private ChangFenChef receiver;
+    + cooking()
+}
+class HunTun implements Breakfast
+{
+//具体命令：馄饨
+    -  receiver:HunTunChef
+    + cooking()
+}
+class HeFen implements Breakfast
+{
+//具体命令：河粉
+    - receiver:HunTunChef
+    + cooking()
+}
+class ChangFenChef
+{
+//接收者：肠粉厨师
+    + cooking()
+}
+class HunTunChef
+{
+//接收者：馄饨厨师
+    + cooking()
+}
+class HeFenChef{
+//接收者：河粉厨师
+    + cooking()
+}
+
+ChangFenChef .down.o ChangFen
+HunTunChef .down.o HunTun
+HeFenChef .down.o HeFen
+Breakfast ..o Waiter
+
+note as WaiterCode
+public void chooseChangFen(){
+    changFen.cooking;
+}
+end note
+WaiterCode .. Waiter
+
+note as changFenCode
+public void cooking(){
+    receiver.cooking();
+}
+end note
+changFenCode .. ChangFen
+@enduml
