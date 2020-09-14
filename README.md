@@ -1,6 +1,7 @@
 
 
 
+
 design-patterns
 主要参考：
 
@@ -485,6 +486,10 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 在软件开发系统中，常常出现“方法的请求者”与“方法的实现者”之间存在紧密的耦合关系。这不利于软件功能的扩展与维护。例如，想对行为进行“撤销、重做、记录”等处理都很不方便，因此“如何将方法的请求者与方法的实现者解耦？”变得很重要，命令模式能很好地解决这个问题
 
+类图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200914210724932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+
+
 ### 命令模式主要优缺点
 
 命令模式的主要优点如下。
@@ -507,6 +512,8 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 4. 当系统需要支持命令的撤销（Undo）操作和恢复（Redo）操作时，可以将命令对象存储起来，采用备忘录模式来实现。
 
 ### 命令模式的实例
+恰饭：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200914210745909.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
 
 ## 3. 解释器模式1TODO
 
