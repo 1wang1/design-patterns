@@ -512,6 +512,7 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 4. 当系统需要支持命令的撤销（Undo）操作和恢复（Redo）操作时，可以将命令对象存储起来，采用备忘录模式来实现。
 
 ### 命令模式的实例
+很多系统都提供了宏命令功能，如UNIX平台下的Shell编程，可以将多条命令封装在一个命令对象中，只需要一条简单的命令即可执行一个命令序列，这也是命令模式的应用实例之一。
 恰饭：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200914210745909.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
 
