@@ -1,12 +1,9 @@
 
-
-
-
-
 design-patterns
 主要参考：
 
 [图说设计模式]: https://design-patterns.readthedocs.io/zh_CN/latest/	"图说设计模式"
+[Java设计模式：23种设计模式全面解析（超级详细）]: http://c.biancheng.net/design_pattern/	"详解设计模式"
 
 
 @[toc]
@@ -554,7 +551,7 @@ Sun公司在1996年公开了Java语言的数据库连接工具JDBC，JDBC使得J
 
 java中的Iterator
 
-## 5. 中介者模式2TODO
+## 5. 中介者模式2
 
 中介者（Mediator）模式的定义：定义一个中介对象来封装一系列对象之间的交互，使原有对象之间的耦合松散，且可以独立地改变它们之间的交互。中介者模式又叫调停模式，它是迪米特法则的典型应用。
 
@@ -570,9 +567,106 @@ java中的Iterator
 
 ### 中介者模式的主要应用场景
 
+- 当对象之间存在复杂的网状结构关系而导致依赖关系混乱且难以复用时。
+- 当想创建一个运行于多个类之间的对象，又不想生成新的子类时。
+
 ### 中介者模式的实例
 
 ## 6. 备忘录模式2TODO
+
+备忘录（Memento）模式的定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫快照模式。
+
+类图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200921202120452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+
+```java
+package memento;
+public class MementoPattern
+{
+    public static void main(String[] args)
+    {
+        Originator or=new Originator();
+        Caretaker cr=new Caretaker();       
+        or.setState("S0"); 
+        System.out.println("初始状态:"+or.getState());           
+        cr.setMemento(or.createMemento()); //保存状态      
+        or.setState("S1"); 
+        System.out.println("新的状态:"+or.getState());        
+        or.restoreMemento(cr.getMemento()); //恢复状态
+        System.out.println("恢复状态:"+or.getState());
+    }
+}
+//备忘录
+class Memento
+{ 
+    private String state; 
+    public Memento(String state)
+    { 
+        this.state=state; 
+    }     
+    public void setState(String state)
+    { 
+        this.state=state; 
+    }
+    public String getState()
+    { 
+        return state; 
+    }
+}
+//发起人
+class Originator
+{ 
+    private String state;     
+    public void setState(String state)
+    { 
+        this.state=state; 
+    }
+    public String getState()
+    { 
+        return state; 
+    }
+    public Memento createMemento()
+    { 
+        return new Memento(state); 
+    } 
+    public void restoreMemento(Memento m)
+    { 
+        this.setState(m.getState()); 
+    } 
+}
+//管理者
+class Caretaker
+{ 
+    private Memento memento;       
+    public void setMemento(Memento m)
+    { 
+        memento=m; 
+    }
+    public Memento getMemento()
+    { 
+        return memento; 
+    }
+}
+```
+
+
+
+### 备忘录模式的主要优缺点
+
+主要优点如下。
+
+- 提供了一种可以恢复状态的机制。当用户需要时能够比较方便地将数据恢复到某个历史的状态。
+- 实现了内部状态的封装。除了创建它的发起人之外，其他对象都不能够访问这些状态信息。
+- 简化了发起人类。发起人不需要管理和保存其内部状态的各个备份，所有状态信息都保存在备忘录中，并由管理者进行管理，这符合单一职责原则。
+
+主要缺点是：资源消耗大。如果要保存的内部状态信息过多或者特别频繁，将会占用比较大的内存资源。
+
+### 备忘录模式的主要应用场景
+
+1. 需要保存与恢复数据的场景，如玩游戏时的中间结果的存档功能。
+2. 需要提供一个可回滚操作的场景，如 Word、记事本、Photoshop，Eclipse 等软件在编辑时按 Ctrl+Z 组合键，还有数据库中事务操作。
+
+### 备忘录模式的实例
 
 ## 7.  观察者模式5TODO
 
