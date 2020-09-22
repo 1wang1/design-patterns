@@ -1,4 +1,5 @@
 
+
 design-patterns
 主要参考：
 
@@ -572,7 +573,7 @@ java中的Iterator
 
 ### 中介者模式的实例
 
-## 6. 备忘录模式2TODO
+## 6. 备忘录模式2
 
 备忘录（Memento）模式的定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫快照模式。
 
@@ -668,7 +669,53 @@ class Caretaker
 
 ### 备忘录模式的实例
 
-## 7.  观察者模式5TODO
+## 7.  观察者模式5
+
+观察者（Observer）模式的定义：指多个对象间存在一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。这种模式有时又称作发布-订阅模式、模型-视图模式，它是对象行为型模式。
+
+类图：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200922202358313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmdfODEwMQ==,size_16,color_FFFFFF,t_70#pic_center)
+
+
+### 观察者模式的主要优缺点
+
+观察者模式是一种对象行为型模式，其主要优点如下。
+
+1. 降低了目标与观察者之间的耦合关系，两者之间是抽象耦合关系。
+2. 目标与观察者之间建立了一套触发机制。
+
+
+它的主要缺点如下。
+
+1. 目标与观察者之间的依赖关系并没有完全解除，而且有可能出现循环引用。
+2. 当观察者对象很多时，通知的发布会花费很多时间，影响程序的效率。
+
+### 观察者模式的主要应用场景
+
+通过前面的分析与应用实例可知观察者模式适合以下几种情形。
+
+1. 对象间存在一对多关系，一个对象的状态发生改变会影响其他对象。
+2. 当一个抽象模型有两个方面，其中一个方面依赖于另一方面时，可将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。
+
+### 观察者模式的实例
+
+在JDK的java.util包中，提供了Observable类以及Observer接口，它们构成了Java语言对观察者模式的支持。
+
+#### 1. Observable类
+
+Observable 类是抽象目标类，它有一个 Vector 向量，用于保存所有要通知的观察者对象，下面来介绍它最重要的 3 个方法。
+
+1. void addObserver(Observer o) 方法：用于将新的观察者对象添加到向量中。
+2. void notifyObservers(Object arg) 方法：调用向量中的所有观察者对象的 update。方法，通知它们数据发生改变。通常越晚加入向量的观察者越先得到通知。
+3. void setChange() 方法：用来设置一个 boolean 类型的内部标志位，注明目标对象发生了变化。当它为真时，notifyObservers() 才会通知观察者。
+
+#### 2. Observer 接口
+
+Observer 接口是抽象观察者，它监视目标对象的变化，当目标对象发生变化时，观察者得到通知，并调用 void update(Observable o,Object arg) 方法，进行相应的工作。
+
+![](https://img-blog.csdnimg.cn/img_convert/b4b69d10e553442aeabe0c63751ba66b.png)
+
+图片引用自：http://c.biancheng.net/view/1390.html
 
 ## 8. 状态模式3TODO
 
