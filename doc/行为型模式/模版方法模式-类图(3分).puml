@@ -1,0 +1,39 @@
+@startuml
+class AbstractClass{
+// 抽象类
++ TemplateMethod():void
++ specificMethod():void
++ abstraceMethod1():void
++ abstraceMethod2():void
+}
+note as TemplateMethod
+public void TemplateMethod(){
+ specificMethod();
+ abstraceMethod1();
+ abstraceMethod2();
+}
+end note
+TemplateMethod .. AbstractClass
+
+class ConcreteClass{
+// 具体类
++ abstraceMethod1():void
++ abstraceMethod2():void
+}
+
+class TemplateMethodPattern{
+// 客户类
+- tm AbstractClass
++ main(String[] args):void
+}
+
+note as maincode
+tm= new ConcreteClass();
+tm.TemplateMethod();
+end note
+maincode .. TemplateMethodPattern
+
+ConcreteClass ..|> AbstractClass
+TemplateMethodPattern ..> AbstractClass
+
+@enduml
